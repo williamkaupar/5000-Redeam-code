@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইদে-মিলাদুন্নবী উপলক্ষে বিশেষ পুরস্কার</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            background: #1b5e20;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .prize-box {
+            background: #f1f8e9;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px dashed #2e7d32;
+        }
+        
+        .prize-amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin: 10px 0;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 18px;
+        }
+        
+        .btn:hover {
+            background: #1b5e20;
+        }
+        
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .question label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .options label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            width: 0%;
+            transition: width 0.5s;
+            border-radius: 12px;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .success-animation {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 5;
+            stroke: #4caf50;
+            stroke-miterlimit: 10;
+            box-shadow: 0 0 15px #4caf50;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+            margin: 0 auto;
+        }
+        
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 5;
+            stroke-miterlimit: 10;
+            stroke: #4caf50;
+            fill: none;
+            animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+        }
+        
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
+        }
+        
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        
+        @keyframes fill {
+            100% {
+                box-shadow: 0 0 0 30px rgba(76, 175, 80, 0);
+            }
+        }
+        
+        .youtube-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .youtube-btn:hover {
+            background: #cc0000;
+        }
+        
+        .final-message {
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .code-display {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin: 15px 0;
+            letter-spacing: 3px;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px dashed #d32f2f;
+        }
+        
+        .share-count {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #1b5e20;
+        }
+        
+        .instruction {
+            background: #fff8e1;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .subscription-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- প্রথম পৃষ্ঠা -->
+        <div id="page1" class="page active">
+            <div class="header">
+                <h1>সালাম!</h1>
+            </div>
+            <div class="content">
+                <p>ইদে-মিলাদুন্নবী উপলক্ষে সকল মুসলিম ভাই ও বোনদের জন্য</p>
+                <div class="prize-box">
+                    <div class="prize-amount">5000 টাকা পুরস্কার</div>
+                    <p>নিচের প্রশ্নগুলোর উত্তর দিন এবং এখনই 5000 টাকা উপহার গ্রহণ করুন।</p>
+                </div>
+                <button class="btn" onclick="showPage(2)">Continue</button>
+            </div>
+        </div>
+
+        <!-- প্রশ্ন পৃষ্ঠা -->
+        <div id="page2" class="page">
+            <div class="header">
+                <h1>প্রশ্ন作答 করুন</h1>
+            </div>
+            <div class="content">
+                <div class="question">
+                    <label>1. আপনি কি মহানবী হযরত মুহাম্মদ (সাঃ)-কে ভালোবাসেন?</label>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="yes"> হ্যাঁ</label>
+                        <label><input type="radio" name="q1" value="no"> না</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>2. আপনি কি তাঁর গ্রন্থে বিশ্বাস করেন?</label>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="yes"> হ্যাঁ</label>
+                        <label><input type="radio" name="q2" value="no"> না</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>3. লিঙ্গ নির্বাচন করুন?</label>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="male"> পুরুষ</label>
+                        <label><input type="radio" name="q3" value="female"> মহিলা</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>4. বৈবাহিক অবস্থা নির্বাচন করুন?</label>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="single"> অবিবাহিত</label>
+                        <label><input type="radio" name="q4" value="married"> বিবাহিত</label>
+                        <label><input type="radio" name="q4" value="divorced"> তালাকপ্রাপ্ত</label>
+                        <label><input type="radio" name="q4" value="complex"> জটিল</label>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="validateForm()">Continue</button>
+            </div>
+        </div>
+
+        <!-- শেয়ার পৃষ্ঠা -->
+        <div id="page3" class="page">
+            <div class="header">
+                <h1>শেয়ার করুন</h1>
+            </div>
+            <div class="content">
+                <div class="instruction">
+                    <p>WhatsApp-এ <strong>৫টি গ্রুপ</strong> বা <strong>১৫ জন বন্ধুর</strong> সাথে শেয়ার করুন</p>
+                </div>
+                
+                <div class="share-count">
+                    শেয়ার করা হয়েছে: <span id="share-count">0</span> / 15
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>0%</span>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                </div>
+                
+                <p>নিচের বাটন ক্লিক করে শেয়ার করুন:</p>
+                
+                <a id="whatsapp-share" class="share-btn" href="#" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp-এ শেয়ার করুন
+                </a>
+                
+                <p>শেয়ার করার পর পৃষ্ঠাটি রিফ্রেশ করবেন না</p>
+                
+                <button class="btn" id="continue-btn" onclick="showPage(4)" disabled>কন্টিনিউ</button>
+            </div>
+        </div>
+
+        <!-- YouTube সাবস্ক্রাইব পৃষ্ঠা -->
+        <div id="page4" class="page">
+            <div class="header">
+                <h1>YouTube চ্যানেল সাবস্ক্রাইব করুন</h1>
+            </div>
+            <div class="content">
+                <div class="instruction">
+                    <p>পুরস্কার পেতে আমাদের YouTube চ্যানেল সাবস্ক্রাইব করুন</p>
+                </div>
+                
+                <a href="https://yt.openinapp.co/5taj7" class="youtube-btn" target="_blank" id="youtube-link">
+                    <i class="fab fa-youtube"></i> সাবস্ক্রাইব করুন
+                </a>
+                
+                <div class="subscription-check">
+                    <input type="checkbox" id="subscribed-checkbox" onchange="toggleContinueButton()">
+                    <label for="subscribed-checkbox">আমি সাবস্ক্রাইব করেছি</label>
+                </div>
+                
+                <div class="success-animation" id="success-animation" style="display: none;">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                    <p>সাবস্ক্রাইব সফল!</p>
+                </div>
+                
+                <button class="btn" id="submit-btn" onclick="showPage(5)" disabled>জমা দিন</button>
+            </div>
+        </div>
+
+        <!-- চূড়ান্ত পৃষ্ঠা -->
+        <div id="page5" class="page">
+            <div class="header">
+                <h1>অভিনন্দন!</h1>
+            </div>
+            <div class="content">
+                <div class="final-message">
+                    <p>২৪ ঘণ্টার মধ্যে আপনি পাবেন ৫০০০ টাকার রিডিম কোড, শুধু অপেক্ষা করুন আর সুযোগটি হাতছাড়া করবেন না।</p>
+                    
+                    <div class="code-display" id="reward-code">লোড হচ্ছে...</div>
+                    
+                    <p>আপনার রিডিম কোডটি সংরক্ষণ করুন এবং আমাদের ওয়েবসাইটে প্রবেশ করে পুরস্কার নিন</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ভেরিয়েবলস
+        let shareCount = 0;
+        const requiredShares = 15;
+        let isSubscribed = false;
+        
+        // পৃষ্ঠা নেভিগেশন ফাংশন
+        function showPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById('page' + pageNumber).classList.add('active');
+            
+            // শেষ পৃষ্ঠায় পৌঁছালে রিডিম কোড জেনারেট করুন
+            if (pageNumber === 5) {
+                generateRewardCode();
+            }
+        }
+
+        // ফর্ম ভ্যালিডেশন
+        function validateForm() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            
+            if (!q1 || !q2 || !q3 || !q4) {
+                alert('দয়া করে সব প্রশ্নের উত্তর দিন');
+                return;
+            }
+            
+            // WhatsApp শেয়ার লিংক সেটআপ
+            const shareText = encodeURIComponent('ইদে-মিলাদুন্নবী উপলক্ষে বিশেষ পুরস্কার পেতে এই লিংকটি ভিজিট করুন: https://youtube.com/@williamkaupar?si=GHsek7jeMZzk5NPY');
+            document.getElementById('whatsapp-share').href = `https://wa.me/?text=${shareText}`;
+            
+            // শেয়ার কাউন্ট রিসেট করুন
+            shareCount = 0;
+            updateShareProgress();
+            
+            showPage(3);
+        }
+
+        // শেয়ার প্রোগ্রেস আপডেট
+        function updateShareProgress() {
+            const progressBar = document.getElementById('progress');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const shareCountElement = document.getElementById('share-count');
+            const continueButton = document.getElementById('continue-btn');
+            
+            const percentage = (shareCount / requiredShares) * 100;
+            progressBar.style.width = percentage + '%';
+            progressPercentage.textContent = Math.round(percentage) + '%';
+            shareCountElement.textContent = shareCount;
+            
+            // ১৫ শেয়ার সম্পূর্ণ হলে Continue বাটন সক্রিয় করুন
+            if (shareCount >= requiredShares) {
+                continueButton.disabled = false;
+            } else {
+                continueButton.disabled = true;
+            }
+        }
+
+        // সাবস্ক্রিপশন চেকবক্স পরিবর্তন
+        function toggleContinueButton() {
+            const checkbox = document.getElementById('subscribed-checkbox');
+            const submitButton = document.getElementById('submit-btn');
+            const successAnimation = document.getElementById('success-animation');
+            
+            if (checkbox.checked) {
+                isSubscribed = true;
+                submitButton.disabled = false;
+                successAnimation.style.display = 'block';
+            } else {
+                isSubscribed = false;
+                submitButton.disabled = true;
+                successAnimation.style.display = 'none';
+            }
+        }
+
+        // র্যান্ডম রিডিম কোড জেনারেটর
+        function generateRewardCode() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 12; i++) {
+                if (i > 0 && i % 4 === 0) code += '-';
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            
+            // অ্যানিমেশনের জন্য ধীরে ধীরে দেখান
+            let i = 0;
+            const codeElement = document.getElementById('reward-code');
+            const interval = setInterval(() => {
+                if (i <= code.length) {
+                    codeElement.textContent = code.substring(0, i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+        
+        // WhatsApp শেয়ার করার সময় প্রোগ্রেস বার আপডেট
+        document.getElementById('whatsapp-share').addEventListener('click', function() {
+            // প্রতিবার ক্লিকে ১ শেয়ার যোগ করুন (সিমুলেশনের জন্য)
+            if (shareCount < requiredShares) {
+                shareCount++;
+                updateShareProgress();
+                
+                // ব্যবহারকারীকে তথ্য দিন
+                if (shareCount === requiredShares) {
+                    alert('অভিনন্দন! আপনি প্রয়োজনীয় শেয়ার সম্পূর্ণ করেছেন। এখন Continue বাটনে ক্লিক করুন।');
+                }
+            }
+        });
+        
+        // YouTube লিঙ্কে ক্লিক ট্র্যাকিং
+        document.getElementById('youtube-link').addEventListener('click', function() {
+            // ব্যবহারকারীকে স্মরণ করিয়ে দিন যে সাবস্ক্রাইব করতে হবে
+            alert('YouTube চ্যানেল সাবস্ক্রাইব করার পর "আমি সাবস্ক্রাইব করেছি" চেকবক্সটি চেক করুন।');
+        });
+        
+        // প্রথম লোডে প্রোগ্রেস আপডেট করুন
+        window.onload = function() {
+            updateShareProgress();
+            
+            // WhatsApp শেয়ার লিংক সেটআপ
+            const shareText = encodeURIComponent('ইদে-মিলাদুন্নবী উপলক্ষে বিশেষ পুরস্কার পেতে এই লিংকটি ভিজিট করুন: https://youtube.com/@williamkaupar?si=GHsek7jeMZzk5NPY');
+            document.getElementById('whatsapp-share').href = `https://wa.me/?text=${shareText}`;
+        };
+    </script>
+</body>
+</html>
